@@ -1,0 +1,74 @@
+plist
+  * dict 
+    -Application Version: 3.2
+    -Archive Path: /users/mf...
+    -...
+    -List of Albums: Array
+      * dict
+        -AlbumId: 1
+        -AlbumName: aperture
+        -Album Type: 98
+      * dict
+        -AlbumId: 2
+        -AlbumName: Aperture Library
+        ...
+        -Album Type: 99
+        -KeyList: Array
+          * string: lLKHtuldSf6dXM71aZf6TA
+          ...
+          * Master: true
+          * PhotoCount: 15876
+      * dict
+        -AlbumId: 3
+        -AlbumName: Library
+        -Parent: 1
+        -Album Type: 5
+      * dict
+        -AlbumId: 4
+        -AlbmuName: Projects
+        - Parent: 3
+      ...
+      * dict
+        -AlbumId: 8
+        -AlbumName: * or netter
+        ...
+        -KeyList: ...
+    -Project List: array
+      * dict
+        -AlbumId: 60
+        -ProjectName: 20020825-StCezaire
+      * dict
+        -AlbumId: ...
+    
+    -List of Faces
+      * dict
+    -Master Image List
+      * dict
+        - Caption: img341
+        - Comments...
+        - ImagePath: /Users/mf/Pictures/Aperture Library.aplibrary/Previews/2011/10/03/20111003-130017/lLKHtuldSf6dXM71aZf6TA/img341.jpg
+        - faces
+        ...
+          
+
+
+--------------
+Album Structure: - Name (id) type      
+
+- Aperture (1) 98
+  - Aperture Library (2) 99
+  - Library (3) 5
+    - Projects (4) 97
+    - Photos (5) 94
+    - Flagged (6) 95
+    - Library Albums (7) 96
+      - * or better (8) 3
+      - ***** (9) 3
+      - In the Last Month (10) 3
+      - In the Last Week (11) 3
+      - Videos (12) 3
+    - 19XX (13) 6
+      - 1965-Douai (14) 4
+      - scans (15) 4
+    - 2001 (16)
+      - 20001015-Fontanalbe (17) 4
