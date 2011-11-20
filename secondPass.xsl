@@ -1,5 +1,7 @@
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
+  <xsl:param name="resolution" select="'1280x800'"/>
+
   <xsl:output method="text"/>
 
   <xsl:template match="/">
@@ -65,8 +67,8 @@
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:value-of select="concat('if [ &quot;',@image_path,'&quot; -nt &quot;',$dest,'&quot; ]&#xa;then&#xa;')"/>
-    <xsl:value-of select="concat('  echo resizing &quot;',@image_path,'&quot;&#xa;')"/>
-    <xsl:value-of select="concat('  convert -size 1024x600 &quot;',@image_path,'&quot; tmp.jpg&#xa;')"/>
+    <xsl:value-of select="concat('  echo generating &quot;',$dest,'&quot;&#xa;')"/>
+    <xsl:value-of select="concat('  convert -size ',$resolution,' &quot;',@image_path,'&quot; tmp.jpg&#xa;')"/>
     <xsl:value-of select="concat('mv tmp.jpg &quot;',$dest,'&quot;&#xa;')"/>
 <!--    <xsl:value-of select="concat('else&#xa;  echo skipping ',@key,'&#xa;')"/>-->
     <xsl:value-of select="'fi&#xa;&#xa;'"/>
