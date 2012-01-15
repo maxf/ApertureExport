@@ -1,18 +1,18 @@
 #!/bin/bash
 # remove old pictures
 
-for i in `find photos -type d`;
+find photos -type d -print0 | while read -d $'\0' i
 do
     if grep -q "$i" directories.txt;
     then
         : #echo $i in
     else
-	echo deleting $i 
-	rm -rf "$i"
+        echo deleting $i 
+        rm -r "$i"
     fi
 done
-
-for i in `find photos -type f`;
+exit
+find photos -type f -print0 | while read -d $'\0' i
 do
     if grep -q "$i" files.txt;
     then
