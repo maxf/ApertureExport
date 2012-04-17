@@ -68,8 +68,9 @@
     </xsl:variable>
     <xsl:value-of select="concat('if [ &quot;',@image_path,'&quot; -nt &quot;',$dest,'&quot; ]&#xa;then&#xa;')"/>
     <xsl:value-of select="concat('  echo generating &quot;',$dest,'&quot;&#xa;')"/>
-    <xsl:value-of select="concat('  convert -size ',$resolution,' &quot;',@image_path,'&quot; tmp.jpg&#xa;')"/>
-    <xsl:value-of select="concat('mv tmp.jpg &quot;',$dest,'&quot;&#xa;')"/>
+    <xsl:value-of select="concat('  cp &quot;',@image_path,'&quot; in.jpg&#xa;')"/>
+    <xsl:value-of select="concat('  convert -size ',$resolution,' in.jpg out.jpg&#xa;')"/>
+    <xsl:value-of select="concat('  mv out.jpg &quot;',$dest,'&quot;&#xa;')"/>
 <!--    <xsl:value-of select="concat('else&#xa;  echo skipping ',@key,'&#xa;')"/>-->
     <xsl:value-of select="'fi&#xa;&#xa;'"/>
   </xsl:template>
