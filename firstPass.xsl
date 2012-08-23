@@ -37,6 +37,7 @@
 
   <xsl:template match="dict[key[.='AlbumId']]">
     <xsl:variable name="AlbumType" select="key[.='Album Type']/following-sibling::string[1]"/>
+    <xsl:variable name="AlbumName" select="key[.='AlbumName']/following-sibling::string[1]"/>
     <xsl:if test="$AlbumType=4 or $AlbumType=6">
       <Album 
         AlbumId="{key[.='AlbumId']/following-sibling::integer[1]}"
@@ -44,18 +45,19 @@
         >
         <xsl:if test="key[.='Parent']">
           <xsl:variable name="Parent" select="key[.='Parent']/following-sibling::integer[1]"/>
-          <xsl:if test="not($Parent = 3)">
+          <xsl:if test="not($Parent=3)">
             <xsl:attribute name="Parent" select="$Parent"/>
           </xsl:if>
         </xsl:if>
 
-        <AlbumName><xsl:value-of select="key[.='AlbumName']/following-sibling::string[1]"/></AlbumName>
+        <AlbumName>
+          <xsl:value-of select="key[.='AlbumName']/following-sibling::string[1]"/>
+        </AlbumName>
         <xsl:if test="key[.='KeyList']">
-          <KeyList><xsl:apply-templates select="key[.='KeyList']/following-sibling::array[1]/*"/></KeyList>
+          <KeyList><xsl:apply-templates select="key[.='KeyList']/following-sibling::array[1]/string"/></KeyList>
         </xsl:if>
       </Album>
     </xsl:if>
   </xsl:template>
-
 
 </xsl:stylesheet>
