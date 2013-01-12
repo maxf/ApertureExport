@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PHOTODIR=photos
+
 echo 1. retrieving aperture data
 if [ "/Users/mf/Pictures/Aperture Library.aplibrary/ApertureData.xml" -nt ApertureData.xml ]
 then

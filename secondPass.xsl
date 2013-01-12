@@ -2,7 +2,7 @@
 
   <xsl:param name="resolution" select="'1280x800'"/>
 
-  <xsl:variable name="destDir" select="'photos'"/>
+  <xsl:param name="destDir" select="'photos'"/>
 
   <xsl:output method="text"/>
 
