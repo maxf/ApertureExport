@@ -2,6 +2,8 @@
 
   <xsl:param name="resolution" select="'1280x800'"/>
 
+  <xsl:variable name="destDir" select="'photos'"/>
+
   <xsl:output method="text"/>
 
   <xsl:template match="/">
@@ -35,7 +37,7 @@
     <xsl:variable name="path">
       <xsl:apply-templates select="../Album[@AlbumId = current()/@Parent]" mode="path"/>
     </xsl:variable>
-    <xsl:value-of select="concat('mkdir -p &quot;photos/',$path,AlbumName,'&quot;&#xa;')"/>
+    <xsl:value-of select="concat('mkdir -p &quot;',$destDir,'/',$path,AlbumName,'&quot;&#xa;')"/>
   </xsl:template>
 
   <xsl:template match="Album" mode="list">
@@ -43,7 +45,7 @@
     <xsl:variable name="path">
       <xsl:apply-templates select="../Album[@AlbumId = current()/@Parent]" mode="path"/>
     </xsl:variable>
-    <xsl:value-of select="concat('photos/',$path,AlbumName,'&#xa;')"/>
+    <xsl:value-of select="concat($destDir,'/',$path,AlbumName,'&#xa;')"/>
   </xsl:template>
 
   <xsl:template match="Album" mode="fileName">
@@ -61,7 +63,7 @@
 
   <xsl:template match="Photo[@MediaType='Image']">
     <xsl:variable name="dest">
-      <xsl:text>photos/</xsl:text>
+      <xsl:value-of select="concat($destDir,'/')"/>
       <xsl:apply-templates select="/plist/Application/ListOfAlbums/Album[KeyList/string=current()/@key]" mode="fileName">
         <xsl:with-param name="key" select="@key"/>
       </xsl:apply-templates>
@@ -69,15 +71,16 @@
     <xsl:value-of select="concat('if [ &quot;',@image_path,'&quot; -nt &quot;',$dest,'&quot; ]&#xa;then&#xa;')"/>
     <xsl:value-of select="concat('  echo generating &quot;',$dest,'&quot;&#xa;')"/>
     <xsl:value-of select="concat('  cp &quot;',@image_path,'&quot; in.jpg&#xa;')"/>
-    <xsl:value-of select="concat('  convert -size ',$resolution,' in.jpg out.jpg&#xa;')"/>
-    <xsl:value-of select="concat('  mv out.jpg &quot;',$dest,'&quot;&#xa;')"/>
+<!--    <xsl:value-of select="concat('  convert -size ',$resolution,' in.jpg out.jpg&#xa;')"/> -->
+<!--    <xsl:value-of select="concat('  mv out.jpg &quot;',$dest,'&quot;&#xa;')"/> -->
+    <xsl:value-of select="concat('  mv in.jpg &quot;',$dest,'&quot;&#xa;')"/>
 <!--    <xsl:value-of select="concat('else&#xa;  echo skipping ',@key,'&#xa;')"/>-->
     <xsl:value-of select="'fi&#xa;&#xa;'"/>
   </xsl:template>
 
   <xsl:template match="Photo[@MediaType='Image']" mode="list">
     <xsl:variable name="dest">
-      <xsl:text>photos/</xsl:text>
+      <xsl:value-of select="concat($destDir,'/')"/>
       <xsl:apply-templates select="/plist/Application/ListOfAlbums/Album[KeyList/string=current()/@key]" mode="fileName">
         <xsl:with-param name="key" select="@key"/>
       </xsl:apply-templates>
