@@ -1,7 +1,8 @@
 #!/bin/bash
 # remove old pictures
+PHOTODIR=photos
 
-find photos -type d -print0 | while read -d $'\0' i
+find $PHOTODIR -type d -print0 | while read -d $'\0' i
 do
     if grep -q "$i" directories.txt;
     then
@@ -12,7 +13,7 @@ do
     fi
 done
 
-find photos -type f -print0 | while read -d $'\0' i
+find $PHOTODIR -type f -print0 | while read -d $'\0' i
 do
     if grep -q "$i" files.txt;
     then

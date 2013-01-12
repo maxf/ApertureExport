@@ -6,7 +6,6 @@ then
   cp "/Users/mf/Pictures/Aperture Library.aplibrary/ApertureData.xml" .
   echo 2. generating script
   make photos.sh
-
   echo 3. running script
   ./photos.sh
   echo 4. removing unused files
