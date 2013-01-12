@@ -1,6 +1,7 @@
 #!/bin/bash
 # remove old pictures
-PHOTODIR=photos
+
+: ${PHOTODIR:?"Need to set PHOTODIR non-empty"}
 
 find $PHOTODIR -type d -print0 | while read -d $'\0' i
 do
